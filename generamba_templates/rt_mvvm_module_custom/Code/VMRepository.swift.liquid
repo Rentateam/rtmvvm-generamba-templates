@@ -1,0 +1,18 @@
+{% include 'headerCustom' %}
+
+import Foundation
+import RealmSwift
+
+extension {{ module_info.name }} {
+    class {{ custom_parameters.entity }}VMRepository: NSObject {
+
+        private var factory: {{ custom_parameters.entity }}ViewModelFactory
+        private(set) var viewModel: {{ custom_parameters.entity }}ViewModel
+        
+        init(factory: {{ custom_parameters.entity }}ViewModelFactory) {
+            self.factory = factory
+            self.viewModel = {{ custom_parameters.entity }}ViewModel()
+//            factory.updateViewModel(viewModel: viewModel)
+        }
+    }
+}

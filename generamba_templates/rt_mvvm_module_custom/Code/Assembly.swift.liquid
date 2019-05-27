@@ -1,0 +1,18 @@
+{% include 'headerCustom' %}
+
+import Foundation
+import Dip
+import RTMVVM
+
+class {{ custom_parameters.entity }}Assembly: AssemblyProtocol {
+    func configure(container: DependencyContainer) {
+
+        container
+            .register {{{ module_info.name }}.{{ custom_parameters.entity }}Factory(databaseService: try container.resolve(tag: AssemblyTag.databaseService),
+                                                          			    bgQueue: try container.resolve(tag: AssemblyTag.backgroundQueue)}
+        container
+            .register(.weakSingleton) {{{ module_info.name }}.{{ custom_parameters.entity }}ViewModelSubscriber(factory: try container.resolve())}
+        container
+            .register(.weakSingleton) {{{ module_info.name }}.{{ custom_parameters.entity }}VMRepository(factory: try container.resolve())}
+    }
+}

@@ -1,0 +1,26 @@
+{% include 'headerCustom' %}
+import RTMVVM
+
+extension {{ module_info.name }} {
+    class {{ custom_parameters.entity }}ViewModelFactory {
+        
+        private var databaseService: DatabaseProviderProtocol
+        private var bgQueue: DispatchQueue
+        
+        init(databaseService: DatabaseProviderProtocol,
+             bgQueue: DispatchQueue) {
+            self.databaseService = databaseService
+            self.bgQueue = bgQueue
+        }
+        
+//        public func updateViewModel(viewModel: {{ custom_parameters.entity }}ViewModel) {
+//            bgQueue.async {
+//                let realm = self.databaseService.getRealm()
+//                DispatchQueue.main.async {
+//
+//                }
+//
+//            }
+//        }
+    }
+}
