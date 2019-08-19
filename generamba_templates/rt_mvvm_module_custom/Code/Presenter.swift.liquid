@@ -1,0 +1,20 @@
+{% include 'headerCustom' %}
+
+import Foundation
+import RTMVVM
+
+struct {{ module_info.name }} {}
+
+extension {{ module_info.name }} {
+    class {{ custom_parameters.entity }}Presenter {
+
+        private(set) var subscriber: {{ custom_parameters.entity }}ViewModelSubscriber
+        private(set) var repository: {{ custom_parameters.entity }}VMRepository
+        
+        init(subscriber: {{ custom_parameters.entity }}ViewModelSubscriber,
+             repository: {{ custom_parameters.entity }}VMRepository) {
+            self.subscriber = subscriber
+            self.repository = repository         
+        }
+    }
+}

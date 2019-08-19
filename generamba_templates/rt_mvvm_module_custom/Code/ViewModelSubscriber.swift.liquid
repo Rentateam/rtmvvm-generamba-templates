@@ -1,0 +1,33 @@
+{% include 'headerCustom' %}
+
+import Foundation
+import RealmSwift
+
+extension {{ module_info.name }} {
+    class {{ custom_parameters.entity }}ViewModelSubscriber {
+
+        private let factory: {{ custom_parameters.entity }}ViewModelFactory
+	private var viewModelContainer: ViewModelWeakList<{{ custom_parameters.entity }}ViewModel>
+        
+        init(factory: {{ custom_parameters.entity }}ViewModelFactory) {
+            self.factory = factory
+	    self.viewModelContainer = ViewModelWeakList<{{ custom_parameters.entity }}ViewModel>()
+            
+//            NotificationCenter.default.addObserver(self,
+//                                                   selector: #selector(self.onSmth(notification:)),
+//                                                   name: NSNotification.Name.smth,
+//                                                   object: nil)
+            
+        }
+        
+        public func addViewModel(model: {{ custom_parameters.entity }}ViewModel) {
+	    self.viewModelContainer.addViewModel(model: model)
+        }
+        
+        func onSmth(notification: Notification) {
+            for model in self.streetContainer.getList() {
+		factory.updateViewModel(viewModel: model)
+	    }
+        }
+    }
+}
