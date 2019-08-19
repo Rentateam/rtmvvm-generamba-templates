@@ -4,7 +4,7 @@ import Foundation
 import RealmSwift
 
 extension {{ module_info.name }} {
-    class {{ custom_parameters.entity }}ViewModelSubscriber: NSObject {
+    class {{ custom_parameters.entity }}ViewModelSubscriber {
 
         private let factory: {{ custom_parameters.entity }}ViewModelFactory
 	private var viewModelContainer: ViewModelWeakList<{{ custom_parameters.entity }}ViewModel>
@@ -13,10 +13,10 @@ extension {{ module_info.name }} {
             self.factory = factory
 	    self.viewModelContainer = ViewModelWeakList<{{ custom_parameters.entity }}ViewModel>()
             
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(self.onSmth(notification:)),
-                                                   name: NSNotification.Name.smth,
-                                                   object: nil)
+//            NotificationCenter.default.addObserver(self,
+//                                                   selector: #selector(self.onSmth(notification:)),
+//                                                   name: NSNotification.Name.smth,
+//                                                   object: nil)
             
         }
         
@@ -24,9 +24,9 @@ extension {{ module_info.name }} {
 	    self.viewModelContainer.addViewModel(model: model)
         }
         
-        @objc func onSmth(notification: Notification) {
+        func onSmth(notification: Notification) {
             for model in self.streetContainer.getList() {
-//		factory.updateViewModel(viewModel: model)
+		factory.updateViewModel(viewModel: model)
 	    }
         }
     }
